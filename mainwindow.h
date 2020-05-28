@@ -24,7 +24,7 @@ public:
   ~MainWindow();
 
   void sendGpsToTxt(const QVector<QString> &file_urls);
-  void GetGpsCoordinate(std::string file_name, double &lat, double &lon, double &alt);
+  void GetGpsCoordinate(const std::string &file_name, double &lat, double &lon, double &alt);
   QString getDataFromCommand(std::string command);
 
 private slots:

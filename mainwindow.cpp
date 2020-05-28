@@ -72,7 +72,7 @@ void MainWindow::sendGpsToTxt(const QVector<QString> &file_urls)
     file.close();
 }
 
-void MainWindow::GetGpsCoordinate(std::string file_name, double &lat, double &lon, double &alt)
+void MainWindow::GetGpsCoordinate(const std::string &file_name, double &lat, double &lon, double &alt)
 {
     std::cout << file_name << std::endl;
     FILE *fp = fopen(file_name.c_str(), "rb");
