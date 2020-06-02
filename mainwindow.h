@@ -1,15 +1,10 @@
 #pragma once
 
 #include <QMainWindow>
+
 #include <QDirIterator>
 #include <QFileDialog>
-#include <QDebug>
-#include <QtDebug>
-
-#include <iostream>
-
-#include <QFile>
-#include <QTextStream>
+#include <QThread>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,13 +18,11 @@ public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-  void sendGpsToTxt(const QVector<QString> &file_urls);
-  void GetGpsCoordinate(const std::string &file_name, double &lat, double &lon, double &alt);
-  QString getDataFromCommand(std::string command);
-
 private slots:
   void on_addDirectory_clicked();
   void on_showOnMap_clicked();
+  void update(const QString &info);
+  void startMap();
 
 private:
   Ui::MainWindow *ui;
