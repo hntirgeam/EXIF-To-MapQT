@@ -34,6 +34,8 @@ if(ANDROID)
     exif.h
     exif.cpp
     mainwindow.ui
+    mainprocess.cpp
+    mainprocess.h
   )
 else()
   add_executable(EXIF_to_mapQT
@@ -43,6 +45,8 @@ else()
     exif.h
     exif.cpp
     mainwindow.ui
+    mainprocess.cpp
+    mainprocess.h
   )
 endif()
 
