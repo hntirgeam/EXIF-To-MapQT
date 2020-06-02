@@ -30,6 +30,7 @@ public slots:
 signals:
   void send(QString);
   void workerFinish();
+  void sendUpdateProgressBar(unsigned int, unsigned int);
 };
 
 

@@ -1,4 +1,3 @@
-#include "mainprocess.h"
 #include "mainwindow.h"
 #include "exif.h"
 
@@ -40,16 +39,21 @@ void MainWindow::on_addDirectory_clicked()
 
 void MainWindow::on_showOnMap_clicked()
 {
-  QThread *thread= new QThread;
-  MainProcess *my = new MainProcess(fileURLs);
-
   my->moveToThread(thread);
 
   connect(my, SIGNAL(send(QString)), this, SLOT(update(QString)));
-  connect(thread, SIGNAL(started()), my, SLOT(startThread()));
   connect(my, SIGNAL(workerFinish()), this, SLOT(startMap()));
+  connect(my, SIGNAL(sendUpdateProgressBar()), this, SLOT(updateProgressBar()));
+  connect(thread, SIGNAL(started()), my, SLOT(startThread()));
+
 
   thread->start();
+}
+
+void MainWindow::updateProgressBar(unsigned int max, unsigned int current)
+{
+  ui->progressBar->setRange(0, max);
+  ui->progressBar->setValue(current);
 }
 
 void MainWindow::startMap()

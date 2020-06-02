@@ -30,6 +30,10 @@ void MainProcess::sendGpsToTxt(const QVector<QString> &file_urls)
     QString filename = "gps_coordinates.txt";
     QFile file(filename);
 
+    unsigned int vecSize = file_urls.size();
+    unsigned int vecSizeDe = file_urls.size();
+    emit sendUpdateProgressBar(vecSize, vecSizeDe);
+
     if (!file_urls.empty() && file.open(QIODevice::ReadWrite))
     {
         QTextStream stream(&file);
@@ -40,6 +44,8 @@ void MainProcess::sendGpsToTxt(const QVector<QString> &file_urls)
             if (lat != 0.0 && lon != 0.0)
             {
                 stream << lat << " " << lon << " " << alt << "\n";
+                emit sendUpdateProgressBar(vecSize, vecSizeDe);
+                vecSizeDe--;
             }
         }
         emit send("=========================");
@@ -62,7 +68,7 @@ void MainProcess::GetGpsCoordinate(const std::string &file_name, double &lat, do
     fseek(fp, 0, SEEK_END);
     unsigned long fsize = ftell(fp);
     rewind(fp);
-    unsigned char *buf = new unsigned char[fsize]; // not a good idea to allocate here
+    unsigned char *buf = new unsigned char[fsize]; // not a good idea to allocate here but mb i'll fix it later (never)
     if (fread(buf, 1, fsize, fp) != fsize)
     {
         delete[] buf;

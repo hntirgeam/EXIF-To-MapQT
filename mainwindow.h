@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 
+#include "mainprocess.h"
+
 #include <QDirIterator>
 #include <QFileDialog>
 #include <QThread>
@@ -18,7 +20,9 @@ public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
+
 private slots:
+  void updateProgressBar(unsigned int max, unsigned int current);
   void on_addDirectory_clicked();
   void on_showOnMap_clicked();
   void update(const QString &info);
@@ -26,5 +30,7 @@ private slots:
 
 private:
   Ui::MainWindow *ui;
+  QThread *thread = new QThread;
+  MainProcess *my = new MainProcess(fileURLs);
   QVector<QString> fileURLs;
 };
