@@ -29,6 +29,7 @@ void MainProcess::sendGpsToTxt(const QVector<QString> &file_urls)
 
     QString filename = "gps_coordinates.txt";
     QFile file(filename);
+    file.remove();
 
     unsigned int vecSize = file_urls.size();
     unsigned int vecSizeDe = file_urls.size();

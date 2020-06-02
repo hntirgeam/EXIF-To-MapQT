@@ -58,11 +58,9 @@ void MainWindow::updateProgressBar(unsigned int max, unsigned int current)
 
 void MainWindow::startMap()
 {
-  MainProcess p;
-
   ui->textBrowser_2->append("boop");
-  ui->textBrowser_2->append(p.getDataFromCommand("python3 map.py"));
-  p.getDataFromCommand("xdg-open map.html");
+  ui->textBrowser_2->append(my->getDataFromCommand("python3 map.py"));
+  my->getDataFromCommand("xdg-open map.html");
 }
 
 

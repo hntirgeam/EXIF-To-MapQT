@@ -29,8 +29,8 @@ private slots:
   void startMap();
 
 private:
+  QVector<QString> fileURLs;
   Ui::MainWindow *ui;
   QThread *thread = new QThread;
   MainProcess *my = new MainProcess(fileURLs);
-  QVector<QString> fileURLs;
 };
