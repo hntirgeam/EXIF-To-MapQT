@@ -28,25 +28,25 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 if(ANDROID)
   add_library(EXIF_to_mapQT SHARED
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    exif.h
-    exif.cpp
-    mainwindow.ui
-    mainprocess.cpp
-    mainprocess.h
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/exif.h
+    src/exif.cpp
+    src/mainwindow.ui
+    src/mainprocess.cpp
+    src/mainprocess.h
   )
 else()
   add_executable(EXIF_to_mapQT
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    exif.h
-    exif.cpp
-    mainwindow.ui
-    mainprocess.cpp
-    mainprocess.h
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/exif.h
+    src/exif.cpp
+    src/mainwindow.ui
+    src/mainprocess.cpp
+    src/mainprocess.h
   )
 endif()
 
