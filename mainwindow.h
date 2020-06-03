@@ -9,7 +9,10 @@
 #include <QThread>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+  class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -20,9 +23,8 @@ public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-
 private slots:
-  void updateProgressBar(unsigned int max, unsigned int current);
+  void updateProgressBar(unsigned int current);
   void on_addDirectory_clicked();
   void on_showOnMap_clicked();
   void update(const QString &info);
@@ -31,6 +33,4 @@ private slots:
 private:
   QVector<QString> fileURLs;
   Ui::MainWindow *ui;
-  QThread *thread = new QThread;
-  MainProcess *my = new MainProcess(fileURLs);
 };

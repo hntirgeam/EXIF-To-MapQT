@@ -7,7 +7,6 @@
 
 #include <unistd.h>
 
-
 class MainProcess : public QObject
 {
   Q_OBJECT
@@ -19,7 +18,6 @@ public:
   void GetGpsCoordinate(const std::string &file_name, double &lat, double &lon, double &alt);
   QString getDataFromCommand(std::string command);
 
-
 private:
   QVector<QString> file_urls;
 
@@ -30,7 +28,5 @@ public slots:
 signals:
   void send(QString);
   void workerFinish();
-  void sendUpdateProgressBar(unsigned int, unsigned int);
+  void sendUpdateProgressBar(unsigned int);
 };
-
-

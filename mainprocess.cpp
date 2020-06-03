@@ -5,22 +5,20 @@
 
 MainProcess::MainProcess()
 {
-
 }
 
 MainProcess::MainProcess(const QVector<QString> &file_urls)
 {
-  this->file_urls = std::move(file_urls);
+    this->file_urls = std::move(file_urls);
 }
 
 MainProcess::~MainProcess()
 {
-
 }
 
 void MainProcess::startThread()
 {
-  sendGpsToTxt(file_urls);
+    sendGpsToTxt(file_urls);
 }
 
 void MainProcess::sendGpsToTxt(const QVector<QString> &file_urls)
@@ -31,22 +29,23 @@ void MainProcess::sendGpsToTxt(const QVector<QString> &file_urls)
     QFile file(filename);
     file.remove();
 
-    unsigned int vecSize = file_urls.size();
-    unsigned int vecSizeDe = file_urls.size();
-    emit sendUpdateProgressBar(vecSize, vecSizeDe);
+    unsigned int vecSizeDe = 0;
+
+    emit sendUpdateProgressBar(vecSizeDe);
 
     if (!file_urls.empty() && file.open(QIODevice::ReadWrite))
     {
         QTextStream stream(&file);
 
-        for(auto f : file_urls)
+        for (auto f : file_urls)
         {
             GetGpsCoordinate(f.toStdString(), lat, lon, alt);
+            vecSizeDe++;
+            emit sendUpdateProgressBar(vecSizeDe);
+
             if (lat != 0.0 && lon != 0.0)
             {
                 stream << lat << " " << lon << " " << alt << "\n";
-                emit sendUpdateProgressBar(vecSize, vecSizeDe);
-                vecSizeDe--;
             }
         }
         emit send("=========================");
@@ -108,5 +107,6 @@ QString MainProcess::getDataFromCommand(std::string command)
                 data.append(buffer);
         pclose(stream);
     }
-    return QString::fromStdString(data.c_str());;
+    return QString::fromStdString(data.c_str());
+    ;
 }
