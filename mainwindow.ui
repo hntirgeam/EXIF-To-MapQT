@@ -27,21 +27,17 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="0" colspan="2">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QTextBrowser" name="textBrowser"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QTextBrowser" name="textBrowser_2"/>
-      </item>
-     </layout>
-    </item>
     <item row="1" column="0">
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="1" column="0">
        <widget class="QPushButton" name="showOnMap">
         <property name="minimumSize">
+         <size>
+          <width>319</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
          <size>
           <width>319</width>
           <height>26</height>
@@ -60,6 +56,12 @@
           <height>26</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>319</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="text">
          <string>Add directory</string>
         </property>
@@ -67,19 +69,48 @@
       </item>
      </layout>
     </item>
+    <item row="0" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0" colspan="2">
+       <widget class="QTextBrowser" name="logTextBrowser"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="preview">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>422</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>422</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Here will be your preview&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P.S: click on file here ----&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P.P.S: you can also double click on item &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;to open it in your default image viewer&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QListWidget" name="fileList"/>
+      </item>
+     </layout>
+    </item>
     <item row="1" column="1">
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="1" column="0">
+      <item row="2" column="0" colspan="2">
        <widget class="QProgressBar" name="progressBar">
         <property name="value">
          <number>24</number>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
+      <item row="1" column="0" colspan="2">
+       <widget class="QLabel" name="locationLabel">
         <property name="text">
-         <string>Files checked:</string>
+         <string>Current picture location (e.g. copy-paste this in google maps)</string>
         </property>
        </widget>
       </item>
