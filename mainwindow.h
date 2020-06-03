@@ -7,6 +7,7 @@
 #include <QDirIterator>
 #include <QFileDialog>
 #include <QThread>
+#include <QDesktopServices>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -30,7 +31,11 @@ private slots:
   void update(const QString &info);
   void startMap();
 
+  void on_fileList_itemClicked();
+  void on_fileList_itemDoubleClicked();
+
 private:
+  MainProcess p;
   QVector<QString> fileURLs;
   Ui::MainWindow *ui;
 };

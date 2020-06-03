@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
   ui->setupUi(this);
   ui->progressBar->setValue(0);
+  ui->locationLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
 }
 
 MainWindow::~MainWindow()
@@ -17,14 +18,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::update(const QString &info)
 {
-  ui->textBrowser->append(info);
+  ui->logTextBrowser->append(info);
 }
 
 void MainWindow::on_addDirectory_clicked()
 {
   fileURLs.clear();
-  ui->textBrowser->clear();
-  ui->textBrowser_2->clear();
+//  ui->fileList->clear();
+  ui->preview->clear();
+  ui->logTextBrowser->clear();
   ui->progressBar->setValue(0);
 
   QString folder_name = QFileDialog::getExistingDirectory(this, "Select folder", QDir::homePath());
@@ -37,10 +39,14 @@ void MainWindow::on_addDirectory_clicked()
   while (it.hasNext())
   {
     fileURLs.push_back(it.next());
-    ui->textBrowser->append(std::move(it.filePath()));
+
+    QListWidgetItem *item = new QListWidgetItem(it.next());
+
+    ui->fileList->addItem(item);
+//    ui->logTextBrowser->append(it.filePath());
   }
 
-  ui->textBrowser_2->append("Files in your dir: " + QString::number(fileURLs.size()));
+  ui->logTextBrowser->append("Files in your dir: " + QString::number(fileURLs.size()));
   ui->progressBar->setRange(0, fileURLs.size());
 }
 
@@ -66,8 +72,29 @@ void MainWindow::updateProgressBar(unsigned int current)
 
 void MainWindow::startMap()
 {
-  MainProcess p;
-  ui->textBrowser_2->append("boop");
-  ui->textBrowser_2->append(p.getDataFromCommand("python3 map.py"));
+  ui->logTextBrowser->append("boop");
+  ui->logTextBrowser->append(p.getDataFromCommand("python3 map.py"));
   p.getDataFromCommand("xdg-open map.html");
+}
+
+void MainWindow::on_fileList_itemClicked()
+{
+  int file_i = ui->fileList->currentRow();
+
+  double latitude = 0, longitude = 0, altitude = 0;
+  p.GetGpsCoordinate(fileURLs[file_i].toStdString(), latitude, longitude, altitude);
+
+  ui->locationLabel->clear();
+  QString locationAppend = "Current picture location (e.g. copy-paste this in google maps):   " + QString::number(latitude) + " " + QString::number(longitude);
+  ui->locationLabel->setText(locationAppend);
+
+  QPixmap pic (fileURLs[file_i]);
+  pic = pic.scaled(400, 400, Qt::KeepAspectRatio, Qt::FastTransformation);
+  ui->preview->setPixmap(pic);
+}
+
+void MainWindow::on_fileList_itemDoubleClicked()
+{
+  int i = ui->fileList->currentRow();
+  QDesktopServices::openUrl(QUrl::fromLocalFile((fileURLs[i])));
 }
