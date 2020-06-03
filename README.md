@@ -8,8 +8,18 @@
 
 * Library used for parsing EXIF:  https://github.com/mayanklahiri/easyexif
 
+* You will also need to install `python3` and `pip3 install folium`
+
 ## Compile
+
 * `cmake .` , `make` and `./<filename>` 
+
+## How to use
+
+* Press "Add directory" button.
+* Choose directory that will be scanned for *.jpg files.
+* Wait until it index all files (it may freeze for a bit)
+* Press "Show on map" and wait again. It'll generate .txt file with all gps coordinates in project folder and then it python script will be executed. This will generate two .html files with map (also in project folder). Programm will automaticaly open map.html in your default browser.  
 
 ## Program look like this:
 
