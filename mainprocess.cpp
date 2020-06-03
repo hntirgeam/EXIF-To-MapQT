@@ -7,7 +7,7 @@ MainProcess::MainProcess()
 {
 }
 
-MainProcess::MainProcess(const QVector<QString> &file_urls)
+MainProcess::MainProcess(QVector<QString> &file_urls) // no const for std::move
 {
     this->file_urls = std::move(file_urls);
 }

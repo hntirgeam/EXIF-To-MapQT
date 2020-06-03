@@ -12,7 +12,7 @@ class MainProcess : public QObject
   Q_OBJECT
 public:
   MainProcess();
-  MainProcess(const QVector<QString> &file_urls);
+  MainProcess(QVector<QString> &file_urls);
   ~MainProcess();
 
   void GetGpsCoordinate(const std::string &file_name, double &lat, double &lon, double &alt);

@@ -24,7 +24,9 @@ void MainWindow::update(const QString &info)
 void MainWindow::on_addDirectory_clicked()
 {
   fileURLs.clear();
-//  ui->fileList->clear();
+
+  ui->fileList->clear();
+  ui->locationLabel->clear();
   ui->preview->clear();
   ui->logTextBrowser->clear();
   ui->progressBar->setValue(0);
@@ -39,15 +41,15 @@ void MainWindow::on_addDirectory_clicked()
   while (it.hasNext())
   {
     fileURLs.push_back(it.next());
-
     QListWidgetItem *item = new QListWidgetItem(it.next());
-
     ui->fileList->addItem(item);
-//    ui->logTextBrowser->append(it.filePath());
   }
 
-  ui->logTextBrowser->append("Files in your dir: " + QString::number(fileURLs.size()));
-  ui->progressBar->setRange(0, fileURLs.size());
+  if (fileURLs.size() != 0)
+  {
+    ui->logTextBrowser->append("Files in your dir: " + QString::number(fileURLs.size()));
+    ui->progressBar->setRange(0, fileURLs.size());
+  }
 }
 
 void MainWindow::on_showOnMap_clicked()
@@ -88,7 +90,7 @@ void MainWindow::on_fileList_itemClicked()
   QString locationAppend = "Current picture location (e.g. copy-paste this in google maps):   " + QString::number(latitude) + " " + QString::number(longitude);
   ui->locationLabel->setText(locationAppend);
 
-  QPixmap pic (fileURLs[file_i]);
+  QPixmap pic(fileURLs[file_i]);
   pic = pic.scaled(400, 400, Qt::KeepAspectRatio, Qt::FastTransformation);
   ui->preview->setPixmap(pic);
 }
